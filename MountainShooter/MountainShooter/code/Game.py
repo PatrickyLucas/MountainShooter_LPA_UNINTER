@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import pygame
 
 from code.Constante import SCREEN_WIDTH, SCREEN_HEIGHT
@@ -15,5 +15,4 @@ class Game:
         while True:
             menu = Menu(self.screen)
             menu.Run()
-            pass
 
