@@ -21,7 +21,7 @@ class Menu:
             self.menu_text(text_size=50, text='Mountain', text_color=(255, 128, 0),
                            text_center_position=((SCREEN_WIDTH / 2), 70))
             self.menu_text(text_size=50, text='Shooter', text_color=(255, 128, 0),
-                           text_center_position=((SCREEN_WIDTH / 2), 70))
+                           text_center_position=((SCREEN_WIDTH / 2), 120))
             pygame.display.flip()
 
     def menu_text(self, text_size: int, text: str, text_color: tuple, text_center_position: tuple):
