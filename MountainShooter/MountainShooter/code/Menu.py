@@ -8,7 +8,7 @@ from pygame.font import Font
 
 from code.Constante import SCREEN_WIDTH, COLOR_ORANGE, COLOR_WHITE, MENU_OPTION, COLOR_YELLOW
 
-
+# Criando menu:
 class Menu:
     def __init__(self, screen):
         self.screen: Surface = screen
