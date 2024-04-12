@@ -1,5 +1,7 @@
 #!/usr/bin/python
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+import sys
+
 import pygame.display
 from pygame import Surface
 
@@ -20,6 +22,10 @@ class Level:
         while True:
             for entity in self.entity_List:
                 self.screen.blit(source=entity.surf, dest=entity.rect)
+                entity.move()
             pygame.display.flip()
 
-
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
