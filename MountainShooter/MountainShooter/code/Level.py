@@ -2,11 +2,11 @@
 #-*- coding: utf-8 -*-
 
 class Level:
-    def __init__(self):
+    def __init__(self, screen, name, menu_return):
         self.screen = None
         self.entityList = None
         self.name = None
 
-    def Run(self, ):
+    def run(self, ):
         pass
 
