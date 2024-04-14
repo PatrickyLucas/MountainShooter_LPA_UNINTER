@@ -6,7 +6,7 @@ import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Constante import COLOR_WHITE
+from code.Constante import COLOR_WHITE, MENU_OPTION
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
@@ -20,6 +20,8 @@ class Level:
         self.entity_List: list[Entity] = []
         self.entity_List.extend(EntityFactory.get_entity('Level1Bg'))
         self.entity_List.append(EntityFactory.get_entity('Player1'))
+        if menu_return in [MENU_OPTION[1], MENU_OPTION[2]]:
+            self.entity_List.append(EntityFactory.get_entity('Player2'))
 
     def run(self):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
