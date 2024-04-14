@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from code.Background import Background
-from code.Constante import SCREEN_WIDTH
+from code.Constante import SCREEN_WIDTH, SCREEN_HEIGHT
+from code.Player import Player
 
 
 class EntityFactory:
@@ -15,3 +16,5 @@ class EntityFactory:
                     list_bg.append(Background(f'Level1Bg{image}', position))
                     list_bg.append(Background(f'Level1Bg{image}', (SCREEN_WIDTH, 0)))
                 return list_bg
+            case 'Player1':
+                return Player('Player1', (10, SCREEN_HEIGHT/2))

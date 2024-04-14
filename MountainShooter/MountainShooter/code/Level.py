@@ -3,8 +3,10 @@
 import sys
 
 import pygame.display
-from pygame import Surface
+from pygame import Surface, Rect
+from pygame.font import Font
 
+from code.Constante import COLOR_WHITE
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
@@ -17,15 +19,28 @@ class Level:
         self.mode = menu_return
         self.entity_List: list[Entity] = []
         self.entity_List.extend(EntityFactory.get_entity('Level1Bg'))
+        self.entity_List.append(EntityFactory.get_entity('Player1'))
 
-    def run(self, ):
+    def run(self):
+        pygame.mixer_music.load(f'./asset/{self.name}.mp3')
+        pygame.mixer_music.play(-1)
+        clock = pygame.time.Clock()
         while True:
+            clock.tick(30)
             for entity in self.entity_List:
-                self.screen.blit(source=entity.surf, dest=entity.rect)
+                self.screen.blit(source=entity.surf, dest=entity.rect)  # desenhar entidades
+                self.level_text(14, f'fps: {clock.get_fps():.0f}', COLOR_WHITE, (10, 10))
                 entity.move()
-            pygame.display.flip()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+
+            pygame.display.flip()
+
+    def level_text(self, text_size: int, text: str, text_color: tuple, text_position: tuple):
+        text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
+        text_surface: Surface = text_font.render(text, True, text_color).convert_alpha()
+        text_rect: Rect = text_surface.get_rect(left=text_position[0], top=text_position[1])
+        self.screen.blit(source=text_surface, dest=text_rect)
