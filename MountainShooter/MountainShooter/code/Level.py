@@ -10,6 +10,7 @@ from pygame.font import Font
 from code.Constante import COLOR_WHITE, MENU_OPTION, EVENT_ENEMY
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 
 # Criando Level:
@@ -36,6 +37,9 @@ class Level:
                 entity.move()
             self.level_text(14, f'fps: {clock.get_fps():.0f}', COLOR_WHITE, (10, 10))
             pygame.display.flip()
+
+            EntityMediator.verify_collision(entity_list=self.entity_List)
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
