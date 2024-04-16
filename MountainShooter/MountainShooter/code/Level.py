@@ -33,9 +33,9 @@ class Level:
             clock.tick(30)
             for entity in self.entity_List:
                 self.screen.blit(source=entity.surf, dest=entity.rect)  # desenhar entidades
-                self.level_text(14, f'fps: {clock.get_fps():.0f}', COLOR_WHITE, (10, 10))
                 entity.move()
-
+            self.level_text(14, f'fps: {clock.get_fps():.0f}', COLOR_WHITE, (10, 10))
+            pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -43,7 +43,7 @@ class Level:
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_List.append(EntityFactory.get_entity(choice))
-            pygame.display.flip()
+
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_position: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
