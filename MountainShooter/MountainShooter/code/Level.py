@@ -35,11 +35,16 @@ class Level:
             for entity in self.entity_List:
                 self.screen.blit(source=entity.surf, dest=entity.rect)  # desenhar entidades
                 entity.move()
+            # FPS ESCRITO NA TELA
             self.level_text(14, f'fps: {clock.get_fps():.0f}', COLOR_WHITE, (10, 10))
+            self.level_text(14, f'ENTIDADES: {len(self.entity_List)}', COLOR_WHITE, (10, 25))
+            # ATUALIZAR TELA
             pygame.display.flip()
-
+            # VERIFICAR RELACIONAMENTO DAS ENTIDADES
             EntityMediator.verify_collision(entity_list=self.entity_List)
-            
+            EntityMediator.verify_health(entity_list=self.entity_List)
+
+            # CONFERIR EVENTOS
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
